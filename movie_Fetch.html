@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    body{
+        color: rgb(219, 167, 204);
+        background-color: rgb(53, 40, 60);
+    }
+    #container{
+        margin: 50px;
+        min-width: 400px;
+        display: flex;
+        /* border: 1px solid firebrick; */
+        background-color: rgb(53, 40, 60);
+        box-shadow: 0px 7px 17px 0px rgb(210, 155, 205);
+        color: rgb(219, 167, 204);
+        border-radius: 40px;
+    }
+    img{
+        margin: 30px;
+        border-radius: 20px;
+    }
+    #container > div{
+        margin: 30px;
+    }
+    #errorimg{
+        width: 400px;
+        height: 300px;
+        margin-left: 40%;
+        box-shadow:  0px 7px 17px 0px rgb(210, 155, 205);
+    }
+    #error{
+        margin: auto;
+    }
+</style>
+<body>
+    <h1>Movie IMDB Rating</h1>
+    <input type="text" id = "movie" placeholder="Enter Movie name"/>
+    <button onclick="movieSearch()">Search Rating</button>
+    <div id = "container"></div>
+    <div id = "error"></div>
+</body>
+</html>
+<script>
+
+function movieSearch()
+{
+    let movie = document.getElementById("movie").value;
+   
+    fetch(`http://www.omdbapi.com/?t=${movie}&apikey=885431b`).then(function(res){
+        return res.json();
+    })
+    .then(function(res){
+
+        console.log(res);
+
+        showMovies(res);
+
+    })
+}
+let container = document.getElementById("container");
+
+let error = document.getElementById("error");
+
+function showMovies(movie)
+{
+    if(movie.Response==='True')
+    {    
+        container.innerHTML = null;
+
+        error.innerHTML = null;
+        
+        let div = document.createElement('div');
+
+        let image = document.createElement('img');
+
+        image.src = movie.Poster;
+
+        let Name = document.createElement('h1');
+
+        let des = document.createElement('h4');
+
+        let Language = document.createElement('h4');
+
+        let genre = document.createElement('h4');
+
+        genre.textContent = "Genre : " + movie.Genre
+
+        Language.innerText = "Language : " + movie.Language
+
+        Name.innerText =  movie.Title;
+
+        des.innerText = "Plot : "+ movie.Plot;
+
+        let release  = document.createElement('h4');
+
+        release.innerText = "Released : " + movie.Released;
+
+        let rating = document.createElement('h3');
+
+        let collection = document.createElement('h4');
+
+        collection.innerText = "BoxOffice : " +movie.BoxOffice;
+
+        rating.innerText = "IMDB Rating : "+ movie.imdbRating;
+
+        if(movie.imdbRating != "N/A")
+        {
+            // console.log(Number(rating.innerText.split(':')[1].split('/')[0]) > 8.5);
+
+            if(Number(rating.innerText.split(':')[1]) > 8.5)
+            {
+                rating.innerText =  rating.innerText + " (Recommended)";
+            }
+
+        }
+        
+        let produce = document.createElement('h4');
+
+        let director = document.createElement('h4');
+
+        director.innerText = "Director : " + movie.Director
+
+        produce.textContent = "Production House : " + movie.Production;
+
+        div.append(Name,Language,rating,collection,director,produce,genre,release,des);
+
+        container.append(image,div)
+    }
+    else
+    {
+        error.innerHTML = null;
+
+        container.innerHTML = null;
+        
+        let image = document.createElement('img');
+
+        image.src="https://i.pinimg.com/originals/ec/10/11/ec1011241dabb12b9ead448ad35df93f.gif";
+
+        image.setAttribute("id","errorimg");
+
+        error.append(image);
+    }
+}
+
+</script>
