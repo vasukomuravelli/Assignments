@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    body{
+        width: 90vw;
+        margin: auto;
+    }
+    #container{
+        display: grid;
+        grid-template-columns: repeat(5,19%);
+        gap: 10px;
+        margin: auto;
+    }
+    #container div{
+        /* border: 1px solid yellowgreen; */
+        margin: auto;
+        width: 250px;
+    }
+    img{
+        width: 250px;
+        height: 300px;
+        
+    }
+</style>
+<body onload="gallery()">
+    <h1>Popular movies</h1>
+   <div id= "container" ></div>
+</body>
+</html>
+<script>
+    async function gallery(){
+        let res = await fetch(`https://api.themoviedb.org/3/movie/popular?api_key=4fbf8cb8662bfd85f1a56377dcc1a96e`);
+
+        let data = await res.json();
+
+        console.log(data);
+
+        showMovies(data.results);
+    }
+    let container = document.getElementById("container");
+
+    function showMovies(data){
+
+        container.innerHTML = null;
+
+        data.forEach(movie => {
+            
+        let div = document.createElement('div');
+
+        let poster = document.createElement('img');
+
+        poster.src = `https://image.tmdb.org/t/p/w500/${movie.poster_path}`;
+
+        let name = document.createElement('p');
+
+        name.textContent = movie.title;
+
+        let rating = document.createElement('p');
+
+        rating.textContent = movie.vote_average;
+
+        rating.style.display= "inline-block";
+
+        let span = document.createElement("span");
+
+        span.innerText = "★";
+
+        span.style.color = "orangered";
+
+        span.style.display= "inline-block";
+
+        div.append(poster,name, rating,span);
+
+        container.append(div);
+
+        });
+    }
+</script>
