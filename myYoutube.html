@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+<style>
+    body{
+        width: 95vw;
+        border: 1px solid white;
+        margin: auto;
+        font-family: 'Roboto', sans-serif;
+    }
+    #navbar{
+        display: flex;
+        width: 100%;
+        margin-top: -4px;
+        z-index: 1;
+        position: fixed;
+        height: 50px;
+        background-color: white;
+        padding-top: 22px;
+    }
+    #logo{
+        width: 100px;
+        height: 25px;
+        margin-left: 2%;
+        margin-top: -2px;
+        cursor: pointer;
+    }
+    #searchbar{
+        width: 600px;
+        height: 35px;
+        margin-left : 11%;
+        margin-top: -8px;
+        padding-left: 20px;
+        border: 1px solid rgb(230, 230, 230);
+    }
+    .material-icons{
+        margin-top: -8px;
+        height: 28px;
+        padding: 5px 6px 5px 10px;
+        cursor: pointer;
+        width: 30px;
+    }
+    #profile{
+        width: 30px;
+        height: 30px;
+        border-radius: 15px;
+        margin-left: 1.0%;
+        margin-top: -5px;
+        cursor: pointer;
+    }
+    #container{
+        margin: 50px auto auto 5px;
+    }
+    #searchResult{
+        z-index: 1;
+        background-color: white;
+        width: 600px;
+        margin-left: 23.6%;
+        position: absolute;
+        padding-left: 20px;
+        margin-top: 33px;
+        height: 300px;
+        overflow-y: scroll;
+        border:  1px solid grey;
+        display: none;
+
+    }
+    #searchResult::-webkit-scrollbar{
+        display: none;
+    }
+    #searchResult p{
+        cursor: pointer;
+    }
+</style>
+<body>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+    <div id="navbar">
+        <span class="material-icons" >menu</span>
+        <a href = "utubeassign.html"><img src = "https://www.marks-iplaw.jp/wp-content/uploads/2018/08/yt_logo_rgb_light.png" id="logo"></a>
+        <h6 style="margin-top: inherit; font-weight: 100; margin-left: 5px;">IN</h6>
+        <input type="text" oninput="debounce(search,3000)" placeholder="Search" id="searchbar" >
+        <span class="material-icons" style="background-color: rgb(230, 230, 230); border: 1px solid rgb(230, 230, 230);">search</span>
+        <span class="material-icons" style="border-radius: 30px; background-color: rgb(247, 247, 247);margin-left: 5px;">mic</span>
+        <span class="material-icons" style="margin-left: 9%; ">video_call</span>
+        <span class="material-icons" style="margin-left: 1%;">apps</span>
+        <span class="material-icons" style="margin-left: 1%;">notifications</span>
+        <img src = "https://lh3.googleusercontent.com/ogw/ADea4I4jI1TJ-_hs7bCE2NnbEIggQ21lW3nNmJTZuu-iZw0=s32-c-mo" id = "profile">
+    </div>
+    <hr>
+    <div id="searchResult"></div>
+   <div id = "container" ></div>
+</body>
+</html>
+<script>
+    let query = JSON.parse(localStorage.getItem("ytsearch"));
+
+    let container = document.getElementById("container");
+
+    let output = document.getElementById("searchResult");
+
+    var delay;
+
+    fetch(`https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=20&q=${query}&type=video&key=AIzaSyC5-mYxkRC0gEjBCSs9fgY4pOUyF3v7k9E`).then((res)=>{
+        return res.json();
+    }).then((res)=>{
+        console.log(res.items);
+        appends(res.items);
+    })
+
+    function appends(movie)
+    {
+        container.innerHTML = null;
+
+        movie.forEach(({id:{videoId},snippet:{channelTitle,description,publishTime,title,thumbnails:{high}}}) => {
+
+            let div = document.createElement('div');
+
+            let video = document.createElement('div');
+
+            video.innerHTML = `<iframe width="300" height="200" src="https://www.youtube.com/embed/${videoId}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`;
+
+            let name = document.createElement('p');
+
+            name.innerText = title;
+
+            name.style.fontSize = "20px";
+
+            let date = document.createElement('p');
+
+            date.innerText = publishTime.split("T").join(' ');
+
+            let des = document.createElement('p');
+
+            des.innerText = description;
+
+            let channel  = document.createElement('p');
+
+            channel.innerText = channelTitle;
+
+            let details = document.createElement('div');
+
+            details.append(name,date,channel,des);
+
+            div.append(video,details);
+            
+            div.style.display = "flex";
+
+            video.style.marginRight = "20px";
+
+            let hr = document.createElement('hr');
+
+            container.append(div,hr);
+        });
+    }
+    async function search()
+    {
+        let query = document.getElementById("searchbar").value;
+
+        console.log(query);
+        
+        let res = await fetch(`https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=20&q=${query}&type=video&key=AIzaSyC5-mYxkRC0gEjBCSs9fgY4pOUyF3v7k9E`);
+
+        let data = await res.json();
+
+        console.log(data.items);
+
+        append(data.items);
+    }
+    function append(movie)
+    {
+        output.style.display = "block";
+        
+        output.innerHTML = null;
+        
+        movie.forEach(({snippet:{title}}) => {
+
+            let Title = document.createElement('p');
+
+            Title.innerText = title;
+
+            Title.onclick = function(){
+
+                showresults(title);
+            }
+            output.append(Title);
+        });
+    }
+    function debounce(func,time)
+    {
+        if(delay)
+        {
+            clearTimeout(delay);
+        }
+        delay = setTimeout(function(){
+            func();
+        },time);
+    }
+    if(localStorage.getItem("ytsearch")===null)
+    {
+        localStorage.setItem("ytsearch",JSON.stringify([]));
+    }
+    function showresults(Searching)
+    {
+        let request = JSON.parse(localStorage.getItem("ytsearch"));
+
+        if(request.length > 0)
+        {
+            request.shift();
+        }
+        request.push(Searching);
+
+        localStorage.setItem("ytsearch",JSON.stringify(request));
+
+        window.location.href = "myYoutube.html";        
+    }
+</script>
