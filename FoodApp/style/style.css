@@ -1,0 +1,53 @@
+#navbar{
+    display: flex;
+    margin: auto 30px auto 30px;
+    justify-items: flex-start ;
+    background-color: tomato;
+    color: rgb(12, 46, 85);
+}
+a{
+    color: inherit;
+}
+#navbar > h3{
+    margin-left: 20px;
+}
+input{
+    margin: auto 30px auto 90px;
+    width: 400px;
+    font-size: larger;
+}
+#options{
+    display: flex;
+    margin: auto 60px;
+}
+#options h3{
+    margin: auto 30px auto 30px;
+}
+#output{
+    z-index: 1;
+    background-color: silver;
+    width: 408px;
+    margin-top: -9px;
+    margin-left: 167px;
+    max-height: 300px;
+    overflow-y: scroll;
+    display: none;
+}
+#output::-webkit-scrollbar{
+    display: none;
+}
+#container img{
+    width: 160px;
+    height: 160px;
+    border-radius: 10px;
+    margin-top: 20px;
+}
+#container{
+    display: grid;
+    grid-template-columns: repeat(4,24%);
+    grid-gap: 20px;
+}
+#container p{
+    font-size: x-large;
+    font-weight: 500;
+}
