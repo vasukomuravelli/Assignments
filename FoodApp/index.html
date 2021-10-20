@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./style/style.css">
+</head>
+<body>
+    <div id="navbar"></div>
+    <div id="output"></div>
+    <div id="container"></div>
+</body>
+</html>
+<script type="module">
+    import navbar from "./components/navbar.js";
+
+    let nav = document.getElementById("navbar");
+
+    nav.innerHTML = navbar();
+
+    import {showdata,search,debounce,showresults} from "./scripts/getData.js";    
+
+    // let food = showdata(`https://themealdb.com/api/json/v1/1/search.php?s=Arrabiata`);
+
+    // console.log(food);
+
+    export let container = document.getElementById("container");
+
+    var delay;
+    
+    let seabar = document.getElementById("sbar");
+    
+    seabar.oninput = function(){
+
+        let output = document.getElementById("output");
+        
+        debounce(search,3000,output,container);
+    }
+</script>
