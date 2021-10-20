@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./style/style.css">
+</head>
+<body>
+    <div id="navbar"></div>
+    <div id="container"></div>
+</body>
+</html>
+<script type="module">
+    
+import navbar from "./components/navbar.js";
+
+let nav = document.getElementById("navbar");
+
+nav.innerHTML = navbar();
+
+import {showdata,showLatest} from "./scripts/getData.js";
+
+let contain = document.getElementById("container");
+
+let data = showdata(`https://www.themealdb.com/api/json/v1/1/filter.php?i=chicken_breast`);
+
+    data.then((res)=>{
+        
+        console.log(res.meals)
+
+        let ress = res.meals;
+
+        showLatest(ress,contain);
+    // data,;
+    });
+</script>
