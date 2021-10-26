@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    #container img{
+        width: 300px;
+        height: 250px;
+    }
+    #container{
+        display: flex;
+        justify-content: space-between;
+    }
+</style>
+<body>
+    <div>
+        <input type="checkbox" id="Burger" value="Burger"/>
+        <label>Burger</label>
+        <input type="checkbox" id="HotDog" value="HotDog"/>
+        <label>HotDog</label>
+        <input type= "checkbox" id="Crushers" value="Crushers"/>
+        <label>Crushers</label>
+        <input type="checkbox" id="FrenchFries" value="FrenchFries"/>
+        <label>FrenchFries</label>
+        <input type="submit" onclick="orderPlaced()">
+    </div>
+    <div id="container"></div>
+</body>
+</html>
+<script>
+    let container = document.getElementById("container");
+    let obj = {
+        Burger : 'https://b.zmtcdn.com/data/pictures/4/18929884/80b00bc9daa926cbbd9eff789af62525.jpg?fit=around|771.75:416.25&crop=771.75:416.25;*,*',
+        HotDog : 'https://m.media-amazon.com/images/S/aplus-media/vc/761b4065-0d68-4310-8777-b6238da525dc.__CR0,0,970,600_PT0_SX970_V1___.jpg',
+        Crushers : 'https://franchiseindia.s3.ap-south-1.amazonaws.com/uploads/news/fi/mcdonalds-to-open-upto-150-mccaf-4dec4f0bdf.gif',
+        FrenchFries : 'https://mcdonaldsblog.in/wp-content/uploads/2015/10/McD-McSpicy_Fries_720_388.jpg',
+    }
+    function orderPlaced()
+    {
+        alert("Your order is successfully placed");
+        
+        let order = document.querySelectorAll("input[type=checkbox]:checked");
+
+        let x;
+
+        for(let checkbox of order)
+        {
+            x = checkbox.value;
+            console.log(x);
+            const myPromise = new Promise((resolve, reject) => {
+                setTimeout(function(){
+                createPromise(x);
+            },5000)
+        })
+
+            console.log(y);
+        }
+    }
+    function createPromise(x)
+    {
+        container.innerHTML = null;
+        let image = document.createElement('img');
+        image.src = obj[x];
+        let name = document.createElement('p');
+        name.innerText = x;
+        name.style.fontSize = "larger";
+        let details = document.createElement('div');
+        details.append(name,image);
+        let orderId = document.createElement('p');
+        orderId.innerText = `Order Id : ${Math.floor(Math.random()*999)}`;
+        container.append(details,orderId);
+    }
+
+</script>
