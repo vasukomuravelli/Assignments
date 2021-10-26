@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    body{
+        background-color: #121926;
+        width: 95vw;
+        margin: auto;
+    }
+    #name{
+        display: inline-block;
+    }
+    #output{
+        background-color: #121926;
+        width: 29%;
+        margin-left: 48%;
+        margin-top: 2px;
+        padding-left: 25px;
+        padding-top: 1px;
+        border-radius: 2%;
+        z-index: 1;
+        position: absolute;
+        overflow-y: scroll;
+        max-height: 200px;
+    }
+    #output::-webkit-scrollbar{
+        display: none;
+    }
+    #output > div{
+        cursor: pointer;
+        background-color: #334366;
+        color: whitesmoke;
+        margin: 1px;
+        border-radius: 2px;
+    }
+    input{
+        margin-left: 49%;
+        margin-top: 2%;
+        border-radius: 5%;
+        height: 30px;
+        padding-left: 25px;
+        width: 30%;
+    }
+    p {
+        display: inline-block;
+        vertical-align: top;
+        margin-left: 10px;
+    }
+    #output img{
+        width: 40px;
+        height: 50px;
+        display: inline-block;
+        border-radius: 2px;
+    }
+    #library{
+        margin: 50px;
+        min-width: 400px;
+        display: flex;
+        /* border: 1px solid firebrick; */
+        background-color: rgb(53, 40, 60);
+        box-shadow: 0px 7px 17px 0px rgb(210, 155, 205);
+        color: rgb(219, 167, 204);
+        border-radius: 40px;
+    }
+    #library img{
+        margin: 30px;
+        border-radius: 20px;
+    }
+    #library > div{
+        margin: 30px;
+    }
+    #register{
+        display: inline-block;
+        color: white;
+        border: 1px solid white;
+        cursor: pointer;
+        font-size: x-large;
+        margin-left: 10px;
+    }
+    #details{
+        display: none;
+        z-index: 1;
+        position: absolute;
+        background-color: white;
+        color: black;
+        margin-left: 315px;
+        margin-top: 30px;
+    }
+    #signup{
+        margin-left: -650px;
+        margin-top: -31px;
+        padding-bottom: 23px;
+    }
+    #login{
+        margin-left: -230px;
+        margin-top: -11px;
+        padding-bottom: 23px;
+    }
+    .submit{
+        width: 125px;
+    }
+</style>
+<body>
+    <input oninput = "debounce(Search,1000)" type="text" id = "name" placeholder="Enter your movie search"/>
+    <div id = "register" onclick="register()">Register/Login</div>
+    <div id = "details">
+        <div>
+        <h1 onclick="show1()" style="cursor: pointer;">Signup</h1>
+        <div id = "signup" style="display: none;cursor: pointer;">
+            <form id="signup-form" onsubmit="signup(event)">
+                <input type="text" id = "personname" placeholder="Type your Name">
+                <input type="text" id = "mobile" placeholder="Type your Mobile Number">
+                <input type="text" id = "mail" placeholder="Type your Email">
+                <input type="password" id = "password" placeholder="Type your New Password">
+                <input type="text" id = "username" placeholder="Type your username">
+                <input type="text" id = "des" placeholder="Enter your description">
+                <input type="submit" class = "submit">
+            </form>
+        </div>
+        </div>
+        <div>
+            <h1 onclick="show2()"style="cursor: pointer;">Login</h1>
+            <div id = "login" style="display: none;cursor: pointer;">
+                <form onsubmit="login(event)" id = "login-form">
+                    <input type="text" id = "user" placeholder="Type your username">
+                    <input type="password" id = "pass" placeholder="Type your Password">
+                    <input type="submit" class = "submit">
+                </form>
+            </div>
+        </div>
+    </div>
+    <div id = "output"></div>
+    <div id = "library"></div>
+</body>
+</html>
+<script>
+
+    let outputDiv = document.getElementById("output");
+
+    let library = document.getElementById("library");
+
+    var delay;
+    
+    // console.log(movie_name)
+    
+    function Search()
+    {
+        var movie_name = document.getElementById("name").value;
+        try{
+            fetch(`http://www.omdbapi.com/?s=${movie_name}&apikey=885431b`).then(function(res){
+            return res.json()
+            })
+            .then(function(res){
+
+                console.log(res.Search);
+                show(res.Search);
+            })
+        }
+        catch(e){
+            console.log(e)
+        }
+    }
+
+    function show(movies)
+    {
+        outputDiv.innerHTML = null;
+
+        movies.forEach(element => {
+
+            let div = document.createElement('div');
+            
+            let name = document.createElement('p');
+
+            let image = document.createElement('img');
+
+            image.src = element.Poster;
+
+            name.innerText = element.Title;
+
+            var x = "";
+
+            if(name.innerText.length > 30)
+            {
+                for(let i=0;i<30;i++)
+                {
+                    x += name.innerText[i];
+                }
+                name.innerText = x + "...";
+            }
+            div.addEventListener("mouseover",function(event){
+                event.Title = element.Title;
+            });
+
+            div.onclick = function(){
+
+                showdetails(element);
+
+            };
+
+            div.append(image,name);
+
+            outputDiv.append(div);
+            
+        });
+    }
+
+    function debounce(func, time)
+    {
+        if(delay)
+        {
+            clearTimeout(delay);
+        }        
+        delay = setTimeout(function(){
+            func();
+        },time);
+    }
+
+    function showdetails(movie)
+    {
+        
+        fetch(`http://www.omdbapi.com/?t=${movie.Title}&apikey=885431b`).then(function(res){
+        return res.json();
+        })
+            .then(function(res){
+        
+        
+        library.innerHTML = null;
+
+        let div = document.createElement('div');
+
+        let image = document.createElement('img');
+
+        image.src = movie.Poster;
+
+        let Name = document.createElement('h1');
+
+        let des = document.createElement('h4');
+
+        let Language = document.createElement('h4');
+
+        let genre = document.createElement('h4');
+
+        genre.textContent = "Genre : " + res.Genre
+
+        Language.innerText = "Language : " + res.Language
+
+        Name.innerText =  res.Title;
+
+        des.innerText = "Plot : "+ res.Plot;
+
+        let release  = document.createElement('h4');
+
+        release.innerText = "Released : " + res.Released;
+
+        let rating = document.createElement('h3');
+
+        let collection = document.createElement('h4');
+
+        collection.innerText = "BoxOffice : " +res.BoxOffice;
+
+        rating.innerText = "IMDB Rating : "+ res.imdbRating;
+
+        if(movie.imdbRating != "N/A")
+        {
+            // console.log(Number(rating.innerText.split(':')[1].split('/')[0]) > 8.5);
+
+            if(Number(rating.innerText.split(':')[1]) > 8.5)
+            {
+                rating.innerText =  rating.innerText + " (Recommended)";
+            }
+
+        }
+        
+        let produce = document.createElement('h4');
+
+        let director = document.createElement('h4');
+
+        director.innerText = "Director : " + res.Director
+
+        produce.textContent = "Production House : " + res.Production;
+
+        div.append(Name,Language,rating,collection,director,produce,genre,release,des);
+
+        library.append(image,div);
+
+    });
+
+    }
+
+    function register()
+    {
+        let details = document.getElementById("details");
+
+        details.style.display = "flex";
+    }
+    var c1 = 0;
+    function show1()
+    {
+        c1++;
+
+        let signup = document.getElementById("signup")
+
+        if(c1%2 !=0)
+        {
+            signup.style.display = "block";
+        }
+        else
+        {
+            signup.style.display = "none";
+        }
+    }
+    var c2 = 0;
+    function show2()
+    {
+        c2++;
+        
+        let login = document.getElementById("login")
+
+        if(c2%2 != 0)
+        {
+            login.style.display = "block";
+        }
+        else
+        {
+            login.style.display = "none";
+        }
+    }
+    function signup(e){
+        e.preventDefault();
+
+        let details = document.getElementById("signup-form");
+
+        let userdetails = {
+            name : details.personname.value,
+            mobile : details.mobile.value,
+            email : details.mail.value,
+            username : details.username.value,
+            password : details.password.value,
+            description : details.des.value,
+        };
+
+        userdetails = JSON.stringify(userdetails);
+
+        fetch("https://masai-api-mocker.herokuapp.com/auth/register",
+        
+        {
+            method : 'POST',
+
+            body : userdetails,
+
+            headers : {"content-Type" : "application/json"},
+
+        }).then(function(res){
+            return res.json()
+        }).then((res)=>{
+            console.log(res)
+            alert("user-Registration successful")
+        }).catch((err)=>{
+        console.log("err : ",err);          
+    });
+    }
+    function login(e)
+    {
+        e.preventDefault();
+
+        let details = document.getElementById("login-form");
+
+        let userdata = {
+
+            username : details.user.value,
+            password : details.pass.value,
+
+        };
+
+        let userdetails = JSON.stringify(userdata);
+
+        fetch("https://masai-api-mocker.herokuapp.com/auth/login",
+        {
+            method : "POST",
+
+            body : userdetails,
+
+            headers : {"content-Type" : "Application/json"}
+
+        }).then((res)=>{
+            return res.json();
+        }).then((res)=>{
+            console.log(res,userdata);
+            addnameToNavbar(userdata.username,res.token);
+        }).catch((err)=>{
+        console.log("err : ",err);
+        });
+    }
+    function addnameToNavbar(username,token)
+    {
+        let user = document.getElementById("register");
+
+        console.log(username,token)
+
+        user.innerText = "Welcome "+ username;
+
+        fetch(`https://masai-api-mocker.herokuapp.com/user/${username}`,{
+
+            headers:{
+                "content-Type": "application/json",
+                "Authorization" : `Bearer ${token}`,
+            },
+            }).then((res)=>{
+            return res.json();
+            }).then((res)=>{
+            console.log("res : ",res);
+            })
+            .catch((err)=>{
+            console.log("err : ",err);
+            })
+    }
+</script>
