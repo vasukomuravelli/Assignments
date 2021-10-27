@@ -53,11 +53,11 @@
             console.log(x);
             const myPromise = new Promise((resolve, reject) => {
                 setTimeout(function(){
-                createPromise(x);
-            },5000)
+                resolve(x);
+            },5000,x)
+        }).then((res)=>{
+            createPromise(x);
         })
-
-            console.log(y);
         }
     }
     function createPromise(x)
