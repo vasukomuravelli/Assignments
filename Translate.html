@@ -34,6 +34,7 @@
     #output
     {
         font-size: xx-large;
+        margin-top: -5px;
     }
     .text{
         display: inline-block;
@@ -59,6 +60,18 @@
         position: absolute;
         right: 10px;
         bottom: 10px;
+        display: inline-block;
+    }
+    .notify{
+        visibility: hidden;
+        display: inline-block;
+        position: absolute;
+        right: 60px;
+        bottom: 0px;
+        border: 1px solid black;
+        padding: 2px;
+        border-radius: 0.4rem 0 0.4rem 0;
+        background-color: #33ccff;
     }
   </style>
   <body>
@@ -93,7 +106,8 @@
     <textarea id="input" class = "box" ></textarea>
     <div class = "box">
         <p id="output"></p>
-        <span class="material-icons" id = "copy" onclick="copyData()">content_copy</span> 
+        <span class="material-icons" id = "copy" onclick="copyData()">content_copy</span>
+        <p class="notify">Copied</p>
     </div>
   </body>
 </html>
@@ -159,16 +173,21 @@
     }
     function copyData()
     {
-        var copyTextarea = document.querySelector("#output");
-        copyTextarea.focus();
-        copyTextarea.select();
-        document.execCommand("copy");
-        try {
-            var successful = document.execCommand('copy');
-            var msg = successful ? 'successful' : 'unsuccessful';
-            console.log('Copying text command was ' + msg);
-        } catch (err) {
-            console.log('Oops, unable to copy');
-        }
+        let show = document.querySelector(".notify");
+
+        show.style.visibility = "visible";
+
+        let copy = document.getElementById("copy");
+
+        copy.innerText = "check_box";
+        setTimeout(()=>{
+            copy.innerText = "content_copy";
+            show.style.visibility = "hidden";
+        },1000)
+
+        
+        var text=document.getElementById("output");
+   
+        window.navigator.clipboard.writeText(text["innerText"])
     }
 </script>
