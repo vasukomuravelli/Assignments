@@ -1,0 +1,14 @@
+{
+  "name": "html_codes",
+  "version": "1.0.0",
+  "main": "boiler.js",
+  "scripts": {
+    "css:build" : "tailwind build ./src/style.css -o ./dist/style.css"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "tailwindcss": "^2.2.18"
+  },
+  "description": ""
+}
