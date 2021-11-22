@@ -6,18 +6,31 @@ const app = express();
 
 const books = require("./MOCK_DATA.json");
 
-app.use(express.json());
+// app.use(express.json());
 
-app.get("/",(req,res)=>{
-    res.send(books);
+const logger = (Permission)=>{
+    return (req,res,next)=>{
+    // const originalsendFunc = res.send.bind(res);
+    // res.send = function(body)
+    // {
+    //     body = {"api requested by" : Permission,...body};
+    //     return originalsendFunc(body);
+    // }
+    req.name = Permission;
+    next();
+    };
+}
+
+app.get("/",logger("vasu"),(req,res)=>{
+    res.send({"api requested by" : req.name,"books":books});
 });
 
 app.post("/",(req,res)=>{
-    books.push(req.body)
-    res.send(books);
+    res.send([...books,req.body]);
+    console.log(req.body);
 });
 
-app.get("/:first_name",(req,res)=>{
+app.get("/:first_name",logger("vasu"),(req,res)=>{
     let newBook = books.filter((book)=>{
         if(req.params.first_name === book.first_name)
         {
