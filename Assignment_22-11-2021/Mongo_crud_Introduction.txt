@@ -1,0 +1,94 @@
+> use assignment
+switched to db assignment
+> db.users.insert({FirstName:"Vasu",LastName:"Dev",Email:"twishrat@wsj.com",gender:"Male",Ip_address:"181.34.253.48",age:25})
+WriteResult({ "nInserted" : 1 })
+> db.users.insertMany([{FirstName:"xena",LastName:"sherlaw",Email:"xsherlaw@patch1.com",gender:"Agender",Ip_address:"85.173.77.58",age:23},{FirstName:"Cordy",LastName:"Antonio",Email:"contonio@ihg.com",gender:"Non-binary",Ip_address:"122.6.33.86",age:27},{FirstName:"Yorgo",LastName:"Moisey",Email:"Ymoisey3@eventbrite.com",gender:"Poly-gender",Ip_address:"56.1.95.19",age:29}])
+{
+        "acknowledged" : true,
+        "insertedIds" : [
+                ObjectId("619b99986aa2ab1f9cb5ea42"),
+                ObjectId("619b99986aa2ab1f9cb5ea43"),
+                ObjectId("619b99986aa2ab1f9cb5ea44")
+        ]
+}
+> db.users.find()
+{ "_id" : ObjectId("619b96e96aa2ab1f9cb5ea41"), "FirstName" : "Vasu", "LastName" : "Dev", "Email" : "twishrat@wsj.com", "gender" : "Male", "Ip_address" : "181.34.253.48", "age" : 25 }
+{ "_id" : ObjectId("619b99986aa2ab1f9cb5ea42"), "FirstName" : "xena", "LastName" : "sherlaw", "Email" : "xsherlaw@patch1.com", "gender" : "Agender", "Ip_address" : "85.173.77.58", "age" : 23 }
+{ "_id" : ObjectId("619b99986aa2ab1f9cb5ea43"), "FirstName" : "Cordy", "LastName" : "Antonio", "Email" : "contonio@ihg.com", "gender" : "Non-binary", "Ip_address" : "122.6.33.86", "age" : 27 }
+{ "_id" : ObjectId("619b99986aa2ab1f9cb5ea44"), "FirstName" : "Yorgo", "LastName" : "Moisey", "Email" : "Ymoisey3@eventbrite.com", "gender" : "Poly-gender", "Ip_address" : "56.1.95.19", "age" : 29 }
+> db.users.find().pretty()
+{
+        "_id" : ObjectId("619b96e96aa2ab1f9cb5ea41"),
+        "FirstName" : "Vasu",
+        "LastName" : "Dev",
+        "Email" : "twishrat@wsj.com",
+        "gender" : "Male",
+        "Ip_address" : "181.34.253.48",
+        "age" : 25
+}
+{
+        "_id" : ObjectId("619b99986aa2ab1f9cb5ea42"),
+        "FirstName" : "xena",
+        "LastName" : "sherlaw",
+        "Email" : "xsherlaw@patch1.com",
+        "gender" : "Agender",
+        "Ip_address" : "85.173.77.58",
+        "age" : 23
+}
+{
+        "_id" : ObjectId("619b99986aa2ab1f9cb5ea43"),
+        "FirstName" : "Cordy",
+        "LastName" : "Antonio",
+        "Email" : "contonio@ihg.com",
+        "gender" : "Non-binary",
+        "Ip_address" : "122.6.33.86",
+        "age" : 27
+}
+{
+        "_id" : ObjectId("619b99986aa2ab1f9cb5ea44"),
+        "FirstName" : "Yorgo",
+        "LastName" : "Moisey",
+        "Email" : "Ymoisey3@eventbrite.com",
+        "gender" : "Poly-gender",
+        "Ip_address" : "56.1.95.19",
+        "age" : 29
+}
+> db.users.findOne("_id" : ObjectId("619b96e96aa2ab1f9cb5ea41"))
+uncaught exception: SyntaxError: missing ) after argument list :
+@(shell):1:23
+> db.users.findOne({"_id" : ObjectId("619b96e96aa2ab1f9cb5ea41")})
+{
+        "_id" : ObjectId("619b96e96aa2ab1f9cb5ea41"),
+        "FirstName" : "Vasu",
+        "LastName" : "Dev",
+        "Email" : "twishrat@wsj.com",
+        "gender" : "Male",
+        "Ip_address" : "181.34.253.48",
+        "age" : 25
+}
+> db.users.insertMany([{"First_name": "Andrea","Last_name":"coverlay","email":"acoverley9@wired.com","gender": "Female","ip_address": "26.182.220.82",age:39},{"First_name": "Lucia","Last_name":"Keggins","email":"lkeggins8@pbs.org","gender": "Male","ip_address": "129.232.167.102",age:19},{"First_name": "Gar","Last_name":"Baudins","email":"gbaudins7@washington.edu","gender": "Female","ip_address": "194.68.242.0",age:20},{"First_name": "Kylie","Last_name":"Pedrielli","email":"kpedrielli6@census.gov","gender": "Male","ip_address": "90.188.163.65",age:20},{"First_name": "Diarmid","Last_name":"Wenzel","email":"dwenzel5@forbes.com","gender": "Male","ip_address": "234.62.53.147",age:35},{"First_name": "Barbi","Last_name":"Tibbles","email":"btibbles4@storify.com","gender": "Female","ip_address": "228.98.112.246",age:20}])
+{
+        "acknowledged" : true,
+        "insertedIds" : [
+                ObjectId("619b9ec76aa2ab1f9cb5ea46"),
+                ObjectId("619b9ec76aa2ab1f9cb5ea47"),
+                ObjectId("619b9ec76aa2ab1f9cb5ea48"),
+                ObjectId("619b9ec76aa2ab1f9cb5ea49"),
+                ObjectId("619b9ec76aa2ab1f9cb5ea4a"),
+                ObjectId("619b9ec76aa2ab1f9cb5ea4b")
+        ]
+}
+> db.users.update({"_id" : ObjectId("619b99986aa2ab1f9cb5ea44")},{$set : {gender:"Female"}})
+WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })
+> db.users.updateMany({gender:"Female"},{$set:{gender:"FEMALE"}})
+{ "acknowledged" : true, "matchedCount" : 4, "modifiedCount" : 4 }
+> db.users.remove({gender:"Agender"})
+WriteResult({ "nRemoved" : 1 })
+> db.users.remove({gender:"Male"})
+WriteResult({ "nRemoved" : 4 })
+> db.users.remove({gender:"FEMALE"},1)
+WriteResult({ "nRemoved" : 1 })
+> db.users.deleteOne({gender:"FEMALE"})
+{ "acknowledged" : true, "deletedCount" : 1 }
+> db.users.deleteMany({gender:"FEMALE"})
+{ "acknowledged" : true, "deletedCount" : 2 }
