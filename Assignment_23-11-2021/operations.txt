@@ -1,0 +1,415 @@
+> db.data.find({movie_name : {$eq:"Tapped"}},{"movie_name" : 1,"production_year " : 1,"_id":0}).pretty()
+{ "movie_name" : "Tapped", "production_year " : 2005 }
+>
+>
+>
+>
+> db.data.find({movie_name : {$ne:"Tapped"}},{"movie_name" : 1,"production_year " : 1,"_id":0}).pretty()
+{ "movie_name" : "Minority Report", "production_year " : 2012 }
+{ "movie_name" : "Scarecrow", "production_year " : 2011 }
+{ "movie_name" : "Getting Even with Dad", "production_year " : 2002 }
+{
+        "movie_name" : "Cellar, The (Huset vid vägens ände)",
+        "production_year " : 2015
+}
+{ "movie_name" : "Kajaki", "production_year " : 1990 }
+{ "movie_name" : "Summer House", "production_year " : 2001 }
+{ "movie_name" : "Scourge", "production_year " : 2015 }
+{ "movie_name" : "Americathon", "production_year " : 2012 }
+{ "movie_name" : "Adventures of Pinocchio, The", "production_year " : 2017 }
+{
+        "movie_name" : "Return to Snowy River (a.k.a. The Man From Snowy River II)",
+        "production_year " : 2011
+}
+{ "movie_name" : "Trials of Muhammad Ali, The", "production_year " : 2013 }
+{
+        "movie_name" : "It's Impossible to Learn to Plow by Reading Books",
+        "production_year " : 1994
+}
+{ "movie_name" : "Pulgasari", "production_year " : 2001 }
+{ "movie_name" : "Only God Forgives", "production_year " : 1992 }
+{ "movie_name" : "Authors Anonymous", "production_year " : 2008 }
+{
+        "movie_name" : "Old Lady and the Pigeons, The (La vieille dame et les pigeons)",
+        "production_year " : 2006
+}
+{ "movie_name" : "Double Harness", "production_year " : 1997 }
+{ "movie_name" : "Deserter (Dezertir)", "production_year " : 1990 }
+{ "movie_name" : "Big Momma's House", "production_year " : 1991 }
+{ "movie_name" : "Singin' in the Rain", "production_year " : 2013 }
+Type "it" for more
+>
+>
+>
+>
+> db.data.find({"budget " : {$gte : 18000}},{"movie_name" : 1,"production_year " : 1,"_id":0}).pretty()
+{ "movie_name" : "Scourge", "production_year " : 2015 }
+{ "movie_name" : "Double Harness", "production_year " : 1997 }
+{ "movie_name" : "Deserter (Dezertir)", "production_year " : 1990 }
+{
+        "movie_name" : "All Things Fair (Lust och fägring stor)",
+        "production_year " : 1990
+}
+{ "movie_name" : "Carnosaur 2", "production_year " : 1995 }
+{ "movie_name" : "Twin Town", "production_year " : 1990 }
+{
+        "movie_name" : "Allan Quatermain and the Temple of Skulls",
+        "production_year " : 2004
+}
+{ "movie_name" : "Cinematographer Style", "production_year " : 2019 }
+{ "movie_name" : "The End", "production_year " : 2007 }
+{ "movie_name" : "A Fugitive from the Past", "production_year " : 2009 }
+{ "movie_name" : "Street Fighter", "production_year " : 1992 }
+{
+        "movie_name" : "Underground: The Julian Assange Story",
+        "production_year " : 1994
+}
+{ "movie_name" : "Foxcatcher", "production_year " : 2009 }
+{ "movie_name" : "Stars", "production_year " : 2013 }
+{ "movie_name" : "You're Gonna Miss Me", "production_year " : 2002 }
+{ "movie_name" : "Mafioso", "production_year " : 2001 }
+{
+        "movie_name" : "Disappearance of Alice Creed, The",
+        "production_year " : 2020
+}
+{
+        "movie_name" : "Butterfly (La lengua de las mariposas)",
+        "production_year " : 2005
+}
+{ "movie_name" : "Chad Hanna", "production_year " : 2014 }
+{ "movie_name" : "Kind Lady", "production_year " : 1996 }
+Type "it" for more
+>
+>
+>
+>
+>
+> db.data.find({"budget " : {$lte : 9500}},{"movie_name" : 1,"production_year " : 1,"_id":0}).pretty()
+{ "movie_name" : "Singin' in the Rain", "production_year " : 2013 }
+{ "movie_name" : "Finding Fela!", "production_year " : 1991 }
+{
+        "movie_name" : "I Am My Films - A Portrait of Werner Herzog (Was ich bin, sind meine Filme)",
+        "production_year " : 1998
+}
+{ "movie_name" : "Once Upon a Time in Mexico", "production_year " : 2012 }
+{ "movie_name" : "Slackers", "production_year " : 2015 }
+{ "movie_name" : "Safe Sex", "production_year " : 2001 }
+{ "movie_name" : "The Scapegoat", "production_year " : 2000 }
+{ "movie_name" : "Is It Easy to be Young?", "production_year " : 1995 }
+{ "movie_name" : "Few of Us", "production_year " : 2006 }
+{ "movie_name" : "Street Scene", "production_year " : 1995 }
+{ "movie_name" : "Mixed Blood", "production_year " : 2003 }
+{ "movie_name" : "Funny Games", "production_year " : 2020 }
+{
+        "movie_name" : "Blind Sunflowers, The (Los girasoles ciegos)",
+        "production_year " : 2001
+}
+{ "movie_name" : "Searchers, The", "production_year " : 2008 }
+{
+        "movie_name" : "Remember the Daze (Beautiful Ordinary, The)",
+        "production_year " : 1995
+}
+{ "movie_name" : "American, The", "production_year " : 2006 }
+{
+        "movie_name" : "Tyler Perry's I Can Do Bad All by Myself",
+        "production_year " : 2011
+}
+{ "movie_name" : "Dancing Lady", "production_year " : 1991 }
+{ "movie_name" : "Pride and Prejudice", "production_year " : 2002 }
+{ "movie_name" : "People Will Talk", "production_year " : 2004 }
+Type "it" for more
+>
+>
+>
+>
+> db.data.find({$and : [{"production_year " : {$gt : 2000}},{"budget " : {$gt : 10000}}]},{"movie_name" : 1,"production_year " : 1,"_id":0}).pretty()
+{ "movie_name" : "Tapped", "production_year " : 2005 }
+{ "movie_name" : "Minority Report", "production_year " : 2012 }
+{ "movie_name" : "Scarecrow", "production_year " : 2011 }
+{ "movie_name" : "Getting Even with Dad", "production_year " : 2002 }
+{
+        "movie_name" : "Cellar, The (Huset vid vägens ände)",
+        "production_year " : 2015
+}
+{ "movie_name" : "Summer House", "production_year " : 2001 }
+{ "movie_name" : "Scourge", "production_year " : 2015 }
+{ "movie_name" : "Americathon", "production_year " : 2012 }
+{ "movie_name" : "Adventures of Pinocchio, The", "production_year " : 2017 }
+{ "movie_name" : "Trials of Muhammad Ali, The", "production_year " : 2013 }
+{ "movie_name" : "Pulgasari", "production_year " : 2001 }
+{ "movie_name" : "Authors Anonymous", "production_year " : 2008 }
+{
+        "movie_name" : "Old Lady and the Pigeons, The (La vieille dame et les pigeons)",
+        "production_year " : 2006
+}
+{ "movie_name" : "Sommer der Gaukler, Der", "production_year " : 2011 }
+{ "movie_name" : "Smash His Camera", "production_year " : 2008 }
+{ "movie_name" : "Temp, The", "production_year " : 2019 }
+{ "movie_name" : "Lore", "production_year " : 2020 }
+{
+        "movie_name" : "Sorcerer and the White Snake, The (Bai she chuan shuo)",
+        "production_year " : 2002
+}
+{
+        "movie_name" : "Eros (Men and Women) (Noite Vazia)",
+        "production_year " : 2014
+}
+{
+        "movie_name" : "Allan Quatermain and the Temple of Skulls",
+        "production_year " : 2004
+}
+Type "it" for more
+>
+>
+>
+>
+>
+> db.data.find({$or : [{"production_year " : {$gt : 2000}},{"budget " : {$gt : 10000}}]},{"movie_name" : 1,"production_year " : 1,"_id":0}).pretty()
+{ "movie_name" : "Tapped", "production_year " : 2005 }
+{ "movie_name" : "Minority Report", "production_year " : 2012 }
+{ "movie_name" : "Scarecrow", "production_year " : 2011 }
+{ "movie_name" : "Getting Even with Dad", "production_year " : 2002 }
+{
+        "movie_name" : "Cellar, The (Huset vid vägens ände)",
+        "production_year " : 2015
+}
+{ "movie_name" : "Kajaki", "production_year " : 1990 }
+{ "movie_name" : "Summer House", "production_year " : 2001 }
+{ "movie_name" : "Scourge", "production_year " : 2015 }
+{ "movie_name" : "Americathon", "production_year " : 2012 }
+{ "movie_name" : "Adventures of Pinocchio, The", "production_year " : 2017 }
+{
+        "movie_name" : "Return to Snowy River (a.k.a. The Man From Snowy River II)",
+        "production_year " : 2011
+}
+{ "movie_name" : "Trials of Muhammad Ali, The", "production_year " : 2013 }
+{
+        "movie_name" : "It's Impossible to Learn to Plow by Reading Books",
+        "production_year " : 1994
+}
+{ "movie_name" : "Pulgasari", "production_year " : 2001 }
+{ "movie_name" : "Only God Forgives", "production_year " : 1992 }
+{ "movie_name" : "Authors Anonymous", "production_year " : 2008 }
+{
+        "movie_name" : "Old Lady and the Pigeons, The (La vieille dame et les pigeons)",
+        "production_year " : 2006
+}
+{ "movie_name" : "Double Harness", "production_year " : 1997 }
+{ "movie_name" : "Deserter (Dezertir)", "production_year " : 1990 }
+{ "movie_name" : "Big Momma's House", "production_year " : 1991 }
+Type "it" for more
+>
+>
+>
+>
+> db.data.find({$nor : [{"production_year " : {$gt : 2000}},{"budget " : {$gt : 10000}}]},{"movie_name" : 1,"production_year " : 1,"_id":0}).pretty()
+{ "movie_name" : "Finding Fela!", "production_year " : 1991 }
+{
+        "movie_name" : "I Am My Films - A Portrait of Werner Herzog (Was ich bin, sind meine Filme)",
+        "production_year " : 1998
+}
+{ "movie_name" : "The Scapegoat", "production_year " : 2000 }
+{ "movie_name" : "Is It Easy to be Young?", "production_year " : 1995 }
+{ "movie_name" : "Street Scene", "production_year " : 1995 }
+{ "movie_name" : "Beautiful People", "production_year " : 1994 }
+{
+        "movie_name" : "Remember the Daze (Beautiful Ordinary, The)",
+        "production_year " : 1995
+}
+{ "movie_name" : "Buster", "production_year " : 1996 }
+{ "movie_name" : "Dancing Lady", "production_year " : 1991 }
+{ "movie_name" : "To Encourage the Others", "production_year " : 1994 }
+{ "movie_name" : "Rebecca of Sunnybrook Farm", "production_year " : 1997 }
+{ "movie_name" : "Home Sweet Hell", "production_year " : 1992 }
+{ "movie_name" : "Flodder in Amerika!", "production_year " : 1995 }
+>
+>
+>
+>
+>
+>
+> db.data.find({$or : [{"production_year " : {$not : {$eq : 2000}}},{"budget " : {$not : {$eq : 10000}}}]},{"movie_name" : 1,"production_year " : 1,"_id":0}).pretty()
+{ "movie_name" : "Tapped", "production_year " : 2005 }
+{ "movie_name" : "Minority Report", "production_year " : 2012 }
+{ "movie_name" : "Scarecrow", "production_year " : 2011 }
+{ "movie_name" : "Getting Even with Dad", "production_year " : 2002 }
+{
+        "movie_name" : "Cellar, The (Huset vid vägens ände)",
+        "production_year " : 2015
+}
+{ "movie_name" : "Kajaki", "production_year " : 1990 }
+{ "movie_name" : "Summer House", "production_year " : 2001 }
+{ "movie_name" : "Scourge", "production_year " : 2015 }
+{ "movie_name" : "Americathon", "production_year " : 2012 }
+{ "movie_name" : "Adventures of Pinocchio, The", "production_year " : 2017 }
+{
+        "movie_name" : "Return to Snowy River (a.k.a. The Man From Snowy River II)",
+        "production_year " : 2011
+}
+{ "movie_name" : "Trials of Muhammad Ali, The", "production_year " : 2013 }
+{
+        "movie_name" : "It's Impossible to Learn to Plow by Reading Books",
+        "production_year " : 1994
+}
+{ "movie_name" : "Pulgasari", "production_year " : 2001 }
+{ "movie_name" : "Only God Forgives", "production_year " : 1992 }
+{ "movie_name" : "Authors Anonymous", "production_year " : 2008 }
+{
+        "movie_name" : "Old Lady and the Pigeons, The (La vieille dame et les pigeons)",
+        "production_year " : 2006
+}
+{ "movie_name" : "Double Harness", "production_year " : 1997 }
+{ "movie_name" : "Deserter (Dezertir)", "production_year " : 1990 }
+{ "movie_name" : "Big Momma's House", "production_year " : 1991 }
+Type "it" for more
+>
+>
+>
+>
+> db.data.find({$and : [{"production_year ": {$gte : 2000}},{"production_year ": {$lte : 2010}}]},{"movie_name" : 1,"production_year " : 1,"_id":0}).pretty()
+{ "movie_name" : "Tapped", "production_year " : 2005 }
+{ "movie_name" : "Getting Even with Dad", "production_year " : 2002 }
+{ "movie_name" : "Summer House", "production_year " : 2001 }
+{ "movie_name" : "Pulgasari", "production_year " : 2001 }
+{ "movie_name" : "Authors Anonymous", "production_year " : 2008 }
+{
+        "movie_name" : "Old Lady and the Pigeons, The (La vieille dame et les pigeons)",
+        "production_year " : 2006
+}
+{ "movie_name" : "Smash His Camera", "production_year " : 2008 }
+{ "movie_name" : "Parenti serpenti", "production_year " : 2003 }
+{
+        "movie_name" : "Sorcerer and the White Snake, The (Bai she chuan shuo)",
+        "production_year " : 2002
+}
+{
+        "movie_name" : "Allan Quatermain and the Temple of Skulls",
+        "production_year " : 2004
+}
+{ "movie_name" : "The End", "production_year " : 2007 }
+{ "movie_name" : "Bitter Moon", "production_year " : 2010 }
+{ "movie_name" : "Quartier Mozart", "production_year " : 2005 }
+{
+        "movie_name" : "Man and a Woman, A (Un homme et une femme)",
+        "production_year " : 2006
+}
+{ "movie_name" : "Holy Wars", "production_year " : 2002 }
+{ "movie_name" : "A Fugitive from the Past", "production_year " : 2009 }
+{ "movie_name" : "Cheap Thrills", "production_year " : 2007 }
+{ "movie_name" : "Pot v raj", "production_year " : 2006 }
+{ "movie_name" : "Omega Man, The", "production_year " : 2005 }
+{ "movie_name" : "Foxcatcher", "production_year " : 2009 }
+Type "it" for more
+>
+>
+>
+>
+>
+> db.data.find({},{movie_name : 1, "production_year" : 1}).sort({"production_year ": -1 ,"movie_name" : 1}).pretty()
+{
+        "_id" : ObjectId("619d0ae1ec2bbdebbf204e8f"),
+        "movie_name" : "Adrenaline Drive (Adorenarin doraibu)"
+}
+{ "_id" : ObjectId("619d0ae1ec2bbdebbf204ed6"), "movie_name" : "Aquamarine" }
+{
+        "_id" : ObjectId("619d0ae1ec2bbdebbf204ee6"),
+        "movie_name" : "Bells of Capistrano"
+}
+{
+        "_id" : ObjectId("619d0ae1ec2bbdebbf204d94"),
+        "movie_name" : "Disappearance of Alice Creed, The"
+}
+{
+        "_id" : ObjectId("619d0ae1ec2bbdebbf204e52"),
+        "movie_name" : "Funny Games"
+}
+{
+        "_id" : ObjectId("619d0ae1ec2bbdebbf204e85"),
+        "movie_name" : "Get Out Your Handkerchiefs (Préparez vos mouchoirs)"
+}
+{
+        "_id" : ObjectId("619d0ae1ec2bbdebbf204e88"),
+        "movie_name" : "Heartbreak Ridge"
+}
+{
+        "_id" : ObjectId("619d0ae1ec2bbdebbf204ebb"),
+        "movie_name" : "How to Make Money Selling Drugs"
+}
+{ "_id" : ObjectId("619d0ae1ec2bbdebbf204d5a"), "movie_name" : "Lore" }
+{
+        "_id" : ObjectId("619d0ae1ec2bbdebbf204ddd"),
+        "movie_name" : "Merry Widow, The"
+}
+{
+        "_id" : ObjectId("619d0ae1ec2bbdebbf204f0c"),
+        "movie_name" : "One Hour Photo"
+}
+{
+        "_id" : ObjectId("619d0ae1ec2bbdebbf204d83"),
+        "movie_name" : "Side by Side"
+}
+{
+        "_id" : ObjectId("619d0ae1ec2bbdebbf204f21"),
+        "movie_name" : "Superman vs. The Elite"
+}
+{
+        "_id" : ObjectId("619d0ae1ec2bbdebbf204ea5"),
+        "movie_name" : "Tell Them Willie Boy is Here"
+}
+{
+        "_id" : ObjectId("619d0ae1ec2bbdebbf204e5c"),
+        "movie_name" : "Yearling, The"
+}
+{
+        "_id" : ObjectId("619d0ae1ec2bbdebbf204e94"),
+        "movie_name" : "Boys in Company C, The"
+}
+{
+        "_id" : ObjectId("619d0ae1ec2bbdebbf204f20"),
+        "movie_name" : "Chef in Love, A (Shekvarebuli kulinaris ataserti retsepti)"
+}
+{
+        "_id" : ObjectId("619d0ae1ec2bbdebbf204d61"),
+        "movie_name" : "Cinematographer Style"
+}
+{
+        "_id" : ObjectId("619d0ae1ec2bbdebbf204eb6"),
+        "movie_name" : "House Is Black, The"
+}
+{
+        "_id" : ObjectId("619d0ae1ec2bbdebbf204e6b"),
+        "movie_name" : "I Feel Sleepy"
+}
+Type "it" for more
+>
+>
+>
+>
+>
+>
+> db.data.find({},{movie_name : 1, "production_year" : 1}).sort({"production_year ": -1 ,"movie_name" : 1}).skip(10).limit(5).pretty()
+{
+        "_id" : ObjectId("619d0ae1ec2bbdebbf204f0c"),
+        "movie_name" : "One Hour Photo"
+}
+{
+        "_id" : ObjectId("619d0ae1ec2bbdebbf204d83"),
+        "movie_name" : "Side by Side"
+}
+{
+        "_id" : ObjectId("619d0ae1ec2bbdebbf204f21"),
+        "movie_name" : "Superman vs. The Elite"
+}
+{
+        "_id" : ObjectId("619d0ae1ec2bbdebbf204ea5"),
+        "movie_name" : "Tell Them Willie Boy is Here"
+}
+{
+        "_id" : ObjectId("619d0ae1ec2bbdebbf204e5c"),
+        "movie_name" : "Yearling, The"
+}
+>
+>
+>
+>
+
