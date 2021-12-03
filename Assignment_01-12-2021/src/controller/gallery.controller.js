@@ -8,10 +8,12 @@ const upload = require("../middleware/upload");
 
 const Gallery = require("../models/gallery.model");
 
+const User = require("../models/user.model");
+
 router.post("/",upload.any("pictures"),async(req,res)=>{
 
     const filePaths = req.files.map((file)=>file.path);
-    console.log(filePaths);
+    // console.log(filePaths);
 
     try{
 
@@ -52,6 +54,7 @@ router.delete("/:id",async(req,res)=>{
                 }
             })
         })
+        const user = await User.findByIdAndDelete(pictures.user_id._id).lean().exec();
         const gallery = await Gallery.findByIdAndDelete(req.params.id).lean().exec();
         
         res.status(204).json({gallery});
