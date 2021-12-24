@@ -4,9 +4,12 @@ import Changecounter from './Counterchange';
 
 function App() {  
 
+  const [counter,setCounter] = React.useState(0);
+
+
   return (
     <div className="App">    
-    <Changecounter props = {React.useState}/>
+    <Changecounter counter = {counter} setCounter = {setCounter}/>
     </div>
   );
 }

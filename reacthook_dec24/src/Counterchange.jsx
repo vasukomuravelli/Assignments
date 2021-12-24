@@ -1,6 +1,4 @@
-function Changecounter({props}){
-
-  const [counter,setCounter] = props(0);
+function Changecounter({counter,setCounter}){
 
   const changecount=(value)=>{
       setCounter(counter+value);
