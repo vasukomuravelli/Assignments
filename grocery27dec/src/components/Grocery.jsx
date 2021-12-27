@@ -1,7 +1,7 @@
-import {Groceryadd} from "./Groceryadd";
+import {Groceryadd} from "./GroceryInput";
 import React from "react";
 import {nanoid} from "nanoid";
-import {Grocerylist} from "./Grocerylist";
+import {Grocerylist} from "./GroceryList";
 export const Grocery = () => {
     const [list, setList] = React.useState([]);
     const func = (data) => {
