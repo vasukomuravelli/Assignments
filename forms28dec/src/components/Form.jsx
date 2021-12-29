@@ -5,7 +5,8 @@ export const Form = ({handleData}) => {
     const ref = React.useRef(null);
     const handleChange = (e) => {
         // console.log(ref.current.files[0].name);
-        const { name, value } = e.target;
+        let{ name, value, type, checked } = e.target;
+        value = type === "checkbox" ? checked : value;
         setForm({ ...form, [name]: value });
     }
     const handleSubmit = (e) => {

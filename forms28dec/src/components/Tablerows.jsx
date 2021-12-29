@@ -11,7 +11,7 @@ export const Tablerows = ({username,age,address,salary,Department,profile,Marrie
                     <td>{address}</td>
                     <td>{salary}</td>
                     <td>{Department}</td>
-                    <td>{Married}</td>
+                    <td>{Married ? "Married" : "single"}</td>
                     <td>{profile}</td>
                 </tr>
             </tbody>
