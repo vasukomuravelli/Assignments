@@ -7,8 +7,9 @@ export const Tablerows = ({ id, username, age, address, salary, Department, prof
         fetch("http://localhost:3001/empdetails/" + id, {
             method: "DELETE",
             headers: { "Content-Type": "application/json" },
+        }).then(() => {
+            handleDelete(Math.random(10)*1000);
         });
-        handleDelete(Math.random(10)*1000);
     }
 
     return (
@@ -20,7 +21,7 @@ export const Tablerows = ({ id, username, age, address, salary, Department, prof
                 <td>{salary}</td>
                 <td>{Department}</td>
                 <td>{Married ? "Married" : "single"}</td>
-                <td>{profile}</td>
+                <td><img src= {profile} alt = "profile" style={{width:"50px", height:"50px"}}/></td>
                 <td><button onClick={() =>(remove(id))} style={{background : "#96D4D4",border:"none",cursor:"pointer"}}>DELETE</button></td>
             </tr>
         </tbody>

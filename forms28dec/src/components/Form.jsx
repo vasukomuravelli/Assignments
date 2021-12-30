@@ -4,9 +4,9 @@ export const Form = ({handleDelete}) => {
     const [form, setForm] = React.useState(null);
     const ref = React.useRef(null);
     const handleChange = (e) => {
-        // console.log(ref.current.files[0].name);
         let{ name, value, type, checked } = e.target;
         value = type === "checkbox" ? checked : value;
+        value = type === "file" ? URL.createObjectURL(ref.current.files[0]) : value;
         setForm({ ...form, [name]: value });
     }
     const handleSubmit = (e) => {
@@ -16,8 +16,10 @@ export const Form = ({handleDelete}) => {
             method: "POST",
             body: JSON.stringify(form),
             headers: { "Content-Type": "application/json" },
+        }).then(() => {
+            handleDelete(Math.random(10)*1000);
         });
-        handleDelete(Math.random(10)*1000);
+        
     }
     return (
         <form onSubmit={handleSubmit} style={{ background: "#c6c6eb", width: "max-content", margin: "auto", padding : "20px"}}>
