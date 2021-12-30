@@ -1,3 +1,23 @@
 {
-  "empdetails": []
+  "empdetails": [
+    {
+      "username": "vasukomuravelli",
+      "age": "26",
+      "address": "Warangal",
+      "Department": "MAC",
+      "salary": "1500000",
+      "profile": "blob:http://localhost:3000/5be659a6-0b4d-4c01-9566-71981dddfe29",
+      "id": 1
+    },
+    {
+      "username": "Raman",
+      "age": "24",
+      "address": "Karimnagar",
+      "Department": "Teaching",
+      "salary": "1200000",
+      "profile": "blob:http://localhost:3000/aa2780a0-cd30-4dbc-8901-e4cbb25123e5",
+      "Married": true,
+      "id": 2
+    }
+  ]
 }
