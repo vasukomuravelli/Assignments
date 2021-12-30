@@ -42,7 +42,6 @@ export const Form = ({handleDelete}) => {
             <input type="text" placeholder="Enter your salary" name="salary" onChange={handleChange} /><br /><br />
             <label>profile pic </label>
             <input type="file" onChange={handleChange} name="profile" ref={ref} /><br /><br />
-            {/* <img src = {ref.current} alt="profile pic"/><br /><br /> */}
             <label>Married</label>
             <input type="checkbox" name="Married" onChange={handleChange} /><br /><br />
             <input type = "submit"/>
