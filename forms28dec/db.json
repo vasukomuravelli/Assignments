@@ -1,23 +1,44 @@
 {
   "empdetails": [
     {
-      "username": "vasukomuravelli",
+      "username": "komuravelli",
       "age": "26",
       "address": "Warangal",
-      "Department": "MAC",
-      "salary": "1500000",
-      "profile": "blob:http://localhost:3000/5be659a6-0b4d-4c01-9566-71981dddfe29",
-      "id": 1
+      "Department": "Teaching",
+      "salary": "1500",
+      "profile": "blob:http://localhost:3000/399249ec-662d-4801-9c9c-47ae9f00fce3",
+      "Married": true,
+      "id": 3
     },
     {
-      "username": "Raman",
-      "age": "24",
-      "address": "Karimnagar",
+      "username": "komuravelli",
+      "age": "26",
+      "address": "Warangal",
       "Department": "Teaching",
-      "salary": "1200000",
-      "profile": "blob:http://localhost:3000/aa2780a0-cd30-4dbc-8901-e4cbb25123e5",
+      "salary": "1800",
+      "profile": "blob:http://localhost:3000/399249ec-662d-4801-9c9c-47ae9f00fce3",
       "Married": true,
-      "id": 2
+      "id": 4
+    },
+    {
+      "username": "vasu",
+      "age": "19",
+      "address": "Tirupathi",
+      "Department": "MAC",
+      "salary": "2000",
+      "profile": "blob:http://localhost:3000/134b40ee-d5ab-444c-9d5c-7c7f90dca581",
+      "Married": true,
+      "id": 5
+    },
+    {
+      "username": "vasu",
+      "age": "19",
+      "address": "Tirupathi",
+      "Department": "MAC",
+      "salary": "2000",
+      "profile": "blob:http://localhost:3000/978ad545-02d3-4c11-a1ed-f4f006fe2157",
+      "Married": false,
+      "id": 6
     }
   ]
 }
