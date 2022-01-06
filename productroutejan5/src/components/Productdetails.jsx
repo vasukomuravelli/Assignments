@@ -6,12 +6,12 @@ export const Productdetails = () => {
     const [product, setProduct] = React.useState({});
     React.useEffect(() => {
         fetch(`http://localhost:3001/products/${id}`).then((res) => res.json()).then((res) => setProduct(res));
-        if (Object.keys(product).length===0) {
-            return <Navigate to="*"/>
-        }
     }, [id]);
     console.log(product);
     
+    // if (Object.keys(product).length===0) {
+    //     return <Navigate to={"*"}/>
+    // }
     return (
         <div>
             <img src={product.image} alt="selected" />
