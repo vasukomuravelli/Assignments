@@ -1,0 +1,52 @@
+{
+  "products": [
+    {
+      "name": "SmartPhone",
+      "price": 300,
+      "id": 0,
+      "image": "https://rukminim1.flixcart.com/image/416/416/kqqykcw0/mobile/j/5/7/galaxy-f22-sm-e225flbdins-samsung-original-imag4z99fp4qdfby.jpeg?q=70"
+    },
+    {
+      "name": "Watch",
+      "price": 20,
+      "id": 1,
+      "image": "https://rukminim1.flixcart.com/image/580/696/k7z3afk0/watch/t/c/x/lcs-8188-lois-caron-original-imafq3k9ztzdkyhe.jpeg?q=50"
+    },
+    {
+      "name": "Shirt",
+      "price": 50,
+      "id": 2,
+      "image": "https://rukminim1.flixcart.com/image/580/696/kg5fzww0-0/shirt/p/z/o/s-afmnblupri0804-asian-fitch-original-imafwg6yakz58cuf.jpeg?q=50"
+    },
+    {
+      "name": "Pants",
+      "price": 100,
+      "id": 3,
+      "image": "https://rukminim1.flixcart.com/image/580/696/jy7kyvk0/trouser/q/h/9/32-kctr-5555-ltbr-fubar-original-imafghyfa6yszgpv.jpeg?q=50"
+    },
+    {
+      "name": "Headphones",
+      "price": 30,
+      "id": 4,
+      "image": "https://rukminim1.flixcart.com/image/612/612/kuof5ow0/headphone/r/4/k/nb119-titanium-48-hours-bluetooth-neckband-aroma-original-imag7qvcnmwsszjc.jpeg?q=70"
+    },
+    {
+      "name": "Television",
+      "price": 220,
+      "id": 5,
+      "image": "https://rukminim1.flixcart.com/image/312/312/kbs9k7k0/television/c/j/3/samsung-ua32t4340akxxl-original-imaft25qdysfsq7k.jpeg?q=70"
+    },
+    {
+      "name": "Wallet",
+      "price": 50,
+      "id": 6,
+      "image": "https://rukminim1.flixcart.com/image/580/696/kpmy8i80/wallet-card-wallet/o/7/i/men-leather-trendy-premium-wallet-for-men-660-wallet-leder-original-imag3tp23brqtz8x.jpeg?q=50"
+    },
+    {
+      "name": "Furniture",
+      "price": 100,
+      "id": 7,
+      "image": "https://rukminim1.flixcart.com/image/612/612/k5ihzm80/bed/z/u/a/king-na-particle-board-fo-jaskbox-01-forzza-wenge-original-imafz6eusufcdqgk.jpeg?q=70"
+    }
+  ]
+}
