@@ -1,6 +1,6 @@
 import React from 'react';
 import { useDispatch, useSelector } from "react-redux";
-import { useParams,useNavigate } from "react-router-dom";
+import { useParams,useNavigate,Link } from "react-router-dom";
 import { removeTodoLoading,removeTodoSuccess,updateTodoLoading,updateTodoSuccess } from "../redux/actions";
 
 export const Todo = () => {
@@ -36,10 +36,12 @@ export const Todo = () => {
     console.log("todo",todo);
     return loading ? <div>Loading...</div> : error ? <div>Something went wrong!</div> : (
         todo && (<div>
+            <Link to="/"><button>Go TO HomePage</button></Link>
             <h1>{todo[0].title}</h1>
             <h3>{todo[0].status ? "Completed" : "Not Completed"}</h3>
             <button onClick={updateTodo}>Update</button>
             <button onClick={removeTodo}>Remove</button>
+            <Link to={`/todos/${todo[0].id}/edit`}><button>Edit</button></Link>
         </div>)
     )
 }

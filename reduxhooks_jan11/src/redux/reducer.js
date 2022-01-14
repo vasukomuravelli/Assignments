@@ -11,6 +11,7 @@ import {
   GET_TODO_ERROR,
   GET_TODO_SUCCESS,
   GET_TODO_LOADING,
+  EDIT_TODO_SUCCESS,
 } from "./actionTypes";
 
 const init = { loading: false, todos: [], error: false };
@@ -87,6 +88,20 @@ export const reducer = (state = init, { type, payload }) => {
       };
     case GET_TODO_ERROR:
       return { ...state, error: true };
+    case EDIT_TODO_SUCCESS:
+      console.log(payload);
+      fetch(`http://localhost:3001/todos/${payload.id}`, {
+        method: "PATCH",
+        body: JSON.stringify({ title: payload.text }),
+        headers: { "content-Type": "application/json" },
+      });
+      return {
+        ...state,
+        todos: state.todos.map((e) =>
+          e.id === payload.id ? { ...e, title: payload.text } : e
+        ),
+        loading: false,
+      };
     default:
       return state;
   }

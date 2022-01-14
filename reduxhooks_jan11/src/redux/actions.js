@@ -11,6 +11,7 @@ import {
   GET_TODO_ERROR,
   GET_TODO_SUCCESS,
   GET_TODO_LOADING,
+  EDIT_TODO_SUCCESS,
 } from "./actionTypes";
 
 export const addTodoError = (err) => {
@@ -35,6 +36,10 @@ export const updateTodoLoading = () => {
 
 export const updateTodoSuccess = (data) => {
   return { type: UPDATE_TODO_SUCCESS, payload: data };
+};
+
+export const editTodo = (data) => {
+  return { type: EDIT_TODO_SUCCESS, payload: data };
 };
 
 export const removeTodoError = (err) => {

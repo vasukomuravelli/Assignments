@@ -40,6 +40,7 @@ export const Home = () => {
     return loading ? <div>Loading...</div> : error ? <div>Something went wrong!</div> : (
         <div>
             <h3>ADD TODOS</h3>
+            <Link to="/total"><h5>Total items : {todos.length}</h5></Link>
             <input type="text" placeholder="Enter your todos" value={text} onChange={(e) => setText(e.target.value)} />
             <button onClick={addTodos}>Add Todo</button>
             {todos.map((e) => {return (<Link to={`/todos/${e.id}`}><div>{e.title} {e.status ? "Completed" : "Not Completed"}</div></Link>)})}
