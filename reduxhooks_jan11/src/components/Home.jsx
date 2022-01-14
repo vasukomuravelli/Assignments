@@ -12,7 +12,7 @@ export const Home = () => {
         dispatch(getTodoLoading());
         getTodos();
     }, []);
-
+    React.useEffect(() => { }, [todos]);
     const getTodos = async () => {
         try {
             const data = await fetch(`http://localhost:3001/todos`);
@@ -27,7 +27,7 @@ export const Home = () => {
         dispatch(addTodoLoading());
         fetch(`http://localhost:3001/todos`, {
             method: "POST",
-            body: JSON.stringify({ status: "False", title: text }),
+            body: JSON.stringify({ status: false, title: text }),
             headers: { 'Content-Type': 'application/json' },
         }).then((res) => res.json()).then((res) => {
             dispatch(addTodoSuccess(res));
@@ -42,7 +42,7 @@ export const Home = () => {
             <h3>ADD TODOS</h3>
             <input type="text" placeholder="Enter your todos" value={text} onChange={(e) => setText(e.target.value)} />
             <button onClick={addTodos}>Add Todo</button>
-            {todos.map((e) => {return (<Link to={`/todos/${e.id}`}><div>{e.title} {e.status}</div></Link>)})}
+            {todos.map((e) => {return (<Link to={`/todos/${e.id}`}><div>{e.title} {e.status ? "Completed" : "Not Completed"}</div></Link>)})}
         </div>
     )
 }

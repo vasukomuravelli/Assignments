@@ -16,7 +16,6 @@ import {
 const init = { loading: false, todos: [], error: false };
 
 export const reducer = (state = init, { type, payload }) => {
-  console.log(state);
   switch (type) {
     case ADD_TODO_LOADING:
       return {
@@ -37,9 +36,23 @@ export const reducer = (state = init, { type, payload }) => {
         loading: true,
       };
     case UPDATE_TODO_SUCCESS:
+      let updatedStatus = !state.todos.filter((e) => e.id === payload)[0]
+        .status;
+      console.log(
+        state.todos.filter((e) => e.id === payload)[0].status,
+        updatedStatus,
+        "success"
+      );
+      fetch(`http://localhost:3001/todos/${payload}`, {
+        method: "PATCH",
+        body: JSON.stringify({ status: updatedStatus }),
+        headers: { "content-Type": "application/json" },
+      });
       return {
         ...state,
-        todos: [...state.todos, payload],
+        todos: state.todos.map((e) =>
+          e.id === payload ? { ...e, status: !e.status } : e
+        ),
         loading: false,
       };
     case UPDATE_TODO_ERROR:
@@ -50,11 +63,15 @@ export const reducer = (state = init, { type, payload }) => {
         loading: true,
       };
     case REMOVE_TODO_SUCCESS:
+      fetch(`http://localhost:3001/todos/${payload}`, {
+        method: "DELETE",
+      });
       return {
         ...state,
         todos: state.todos.filter((e) => e.id !== payload),
         loading: false,
       };
+
     case REMOVE_TODO_ERROR:
       return { ...state, error: true };
     case GET_TODO_LOADING:
