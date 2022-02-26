@@ -3,6 +3,7 @@ import { Login } from "./components/Login";
 import "./App.css";
 import { Route, Routes } from "react-router-dom";
 import { Dashboard } from "./components/Dashboard";
+import { PrivateRoute } from "./components/PrivateRoute";
 
 function App() {
   return (
@@ -10,7 +11,14 @@ function App() {
       <Routes>
         <Route path="/register" element={<Register />}></Route>
         <Route path="/login" element={<Login />}></Route>
-        <Route path="/dashboard" element={<Dashboard />}></Route>
+        <Route
+          path="/"
+          element={
+            <PrivateRoute>
+              <Dashboard />
+            </PrivateRoute>
+          }
+        ></Route>
       </Routes>
     </div>
   );

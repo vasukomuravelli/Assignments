@@ -1,7 +1,9 @@
 import React from 'react';
 import { useSelector, useDispatch } from "react-redux";
-import { Navigate } from 'react-router-dom';
-import {registerLoading,registerError,registerSuccess} from "../redux/registeration/actions"
+import { Navigate,Link } from 'react-router-dom';
+import { registerLoading, registerError, registerSuccess } from "../redux/registeration/actions"
+import { Input,Button } from 'antd';
+
 
 export const Register = () => {
     const [form, setForm] = React.useState({});
@@ -14,13 +16,15 @@ export const Register = () => {
     }
     const handleClick = () => {
         dispatch(registerLoading());
-        fetch("https://masai-api-mocker.herokuapp.com/auth/register", {
-            body: form,
+        console.log(form);
+        fetch("https://reqres.in/api/register", {
+            body: JSON.stringify(form),
             method: "POST",
             headers: { "Content-Type": "application/json" }
         }).then((response) => {
-            console.log(response);
-            dispatch(registerSuccess(response));
+            return response.json();
+        }).then((res) => {
+            dispatch(registerSuccess(res.token));
         }).catch((error) => {
             dispatch(registerError(error.message))
         })
@@ -30,14 +34,12 @@ export const Register = () => {
     }
     return (
         isLoading ? <div>...Loading</div> : 
-        <div>
-            <input type="text" id="Name" placeholder="Enter your Name" onChange={handleChange}/><br/><br/>
-            <input type="text" id="Email" placeholder="Enter your Email" onChange={handleChange}/><br/><br/>
-            <input type="password" id="Password" placeholder="Enter your Password" onChange={handleChange}/><br/><br/>
-            <input type="text" id="Username" placeholder="Enter your Username" onChange={handleChange}/><br/><br/>
-            <input type="text" id="Mobile" placeholder="Enter your Mobile" onChange={handleChange}/><br/><br/>
-            <input type="description" id="Description" placeholder="Enter your Description" onChange={handleChange} /><br/><br/>
-            <button type="submit" onClick={handleClick}>submit</button>
+            <div style={{ width: "50%", margin: "auto" }}>
+            <h1>Register here</h1>
+            <Input type="text" id="email" placeholder="Enter your Email" onChange={handleChange}/><br/><br/>
+            <Input type="password" id="password" placeholder="Enter your Password" onChange={handleChange}/><br/><br/>
+            <Button type="submit" onClick={handleClick}>Submit</Button><br/><br/>
+            <Link to="/login"><p style={{fontSize:"16px"}}>Already a user ?</p></Link>                
         </div>
     )
 }
