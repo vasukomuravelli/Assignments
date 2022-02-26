@@ -33,7 +33,7 @@ export const Register = () => {
         return <Navigate to="/login"/>
     }
     return (
-        isLoading ? <div>...Loading</div> : 
+        isLoading ? <div>...Loading</div> : isError ? <div>Something went wrong</div> :
             <div style={{ width: "50%", margin: "auto" }}>
             <h1>Register here</h1>
             <Input type="text" id="email" placeholder="Enter your Email" onChange={handleChange}/><br/><br/>
